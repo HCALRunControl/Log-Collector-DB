@@ -5,13 +5,31 @@ import os
 import time
 import datetime
 import signal
+import requests
+import json
+reload(sys)
+
 
 class SigTerm(SystemExit): pass
 def sigterm(sig,frm): raise SigTerm
 signal.signal(15,sigterm)
 
+def sendSlackMessage(alert):
+    print alert
+    webhook_url = "https://hooks.slack.com/services/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"
+    slack_data = {'text': "Testing new webHandsaw System ```%s```" % alert}
+    response = requests.post(
+        webhook_url, data=json.dumps(slack_data),
+        headers={'Content-Type': 'application/json'}
+    )
+    if response.status_code != 200:
+        print 'Request to slack returned an error %s, the response is:\n%s' % (response.status_code, response.text)
+        return False
+    else:
+        return True
+
 try:
-    database = CONNECTION STRING
+    database = "hcallog4jdb_admin/HCAL_4jlogger@int2r1-v.cern.ch:10121/int2r_lb.cern.ch"
     connection = cx_Oracle.connect(database)
     global cur
     cur = connection.cursor()
@@ -27,13 +45,7 @@ try:
                 print "check"
                 message = error[0]
                 timestamp = error[1]
-                f = open('error_log.txt', 'w')
-                f.write(message)
-                f.close()
-                cmd1 = "ssh cgodfrey@cms904usr" 
-                cmd2 = "python /nfshome0/cgodfrey/log4jDB/Log-Collector-DB/send_message.py"
-                process = subprocess.Popen( "/bin/bash", shell=False, universal_newlines=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE )
-                out, err = process.communicate(cmd1 + "\n" + cmd2 + "\n")
+            sendSlackMesssage(message)
         except Exception as e:
             print e
         time.sleep(60)

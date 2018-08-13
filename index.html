@@ -1,0 +1,45 @@
+<html>
+  <!-- 
+    request page for webHandsaw
+    this page is where a user fills
+    out the form that gets submitted to logViewer.py 
+    if you have any problems with this page, please email
+    john_hakala@brown.edu or ka_hei_martin_kwok@brown.edu
+    John Hakala 3/2/2017                                   
+   -->
+  <head>
+     <title>webHandsaw -- HCAL logs</title>
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" type="text/css" href="webHandsaw.css"> 
+     <link rel="icon" type="image/png" href="webHandsaw_black.png">
+  </head>
+  <body>
+    <div id="top"><img src="webHandsaw.png" width="50px"><h1>webHandsaw</h1></div>
+    <div id="wrapper">
+      This page will retrieve the latest logs from the LogCollector logs (just like <tt>tail -NUMBER</tt>).
+      <br><br>
+      <form action="/cgi-bin/webHandsaw_beta/web_queries.py" type="submit" method="get">
+        Number of lines to show:
+        <input type="number" name="numberOfLines">
+        <input name="systemName" value="904" style="visibility: hidden">
+        <br><br>
+        Filter level: <br><tt>
+          <input type="radio" name="filter" value="INFO" checked> info<br>
+          <input type="radio" name="filter" value="WARN"> warn<br>
+          <input type="radio" name="filter" value="ERROR"> error 
+        </tt>
+        <br><br>
+        Timestamp (YYYY-MM-DD HH24:MI:SS):
+         <input type="timestamp-local" name="timestamp">
+        <br><br>
+        Application Name:
+         <input type="text" name="appName">
+        <br><br>
+        Port:
+         <input type="number" name="port">
+        <br><br>
+        <input type="submit">
+      </form>
+    </div>
+  </body>
+</html>
