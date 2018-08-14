@@ -43,7 +43,7 @@ def build_query(num_messages, level, timestamp, app_name, port):
 
 def execute_query():
     try:
-        database = 'hcallog4jdb_admin/HCAL_4jlogger@int2r1-v.cern.ch:10121/int2r_lb.cern.ch'
+        database = 'CONNECTION_STRING'
         connection = cx_Oracle.connect(database)
         global cur
         cur = connection.cursor()

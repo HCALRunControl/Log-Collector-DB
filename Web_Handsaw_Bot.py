@@ -16,7 +16,7 @@ signal.signal(15,sigterm)
 
 def sendSlackMessage(alert):
     print alert
-    webhook_url = "https://hooks.slack.com/services/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"
+    webhook_url = "WEBHOOK"
     slack_data = {'text': "Testing new webHandsaw System ```%s```" % alert}
     response = requests.post(
         webhook_url, data=json.dumps(slack_data),
@@ -29,7 +29,7 @@ def sendSlackMessage(alert):
         return True
 
 try:
-    database = "hcallog4jdb_admin/HCAL_4jlogger@int2r1-v.cern.ch:10121/int2r_lb.cern.ch"
+    database = "CONNECTION_STRING"
     connection = cx_Oracle.connect(database)
     global cur
     cur = connection.cursor()
