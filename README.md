@@ -25,7 +25,10 @@ sudo -u daqowner sh -c 'nohup python -u Web_Handsaw_Bot.py > WebHandsawLog.txt &
 
 Logging Collector Configuration:
 
-To configure the logging collector edit the file: /opt/rcms/hcalpro/logcollector/tomcat/webapps/Collector/FileConfiguration/CollectorConfiguration.xml
+To configure the logging collector edit the file on cmsrc-hcal: 
+```
+/opt/rcms/hcalpro/logcollector/tomcat/webapps/Collector/FileConfiguration/CollectorConfiguration.xml
+```
 
 the DBAppender section should look like the following (without comments):
 
