@@ -1,3 +1,6 @@
+moved to webhandsaw in: https://gitlab.cern.ch/cmshcos/webtools/
+
+
 # Log-Collector-DB
 This code reads logs from a DB for log collector interface to slack and web. It is a notification and monitioring system for HCAL online software logs. It consists of two components, a bot to send slack notifications in case of error and a web interface to search through the logs.
 
